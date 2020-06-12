@@ -19,15 +19,21 @@ void insertion_sort_list(listint_t **list)
 	while (swap_tick == 1 && temp)
 		for (temp = *list, swap_tick = 0; temp; temp = temp->next)
 		{
+			printf("Temp->n %d\n", temp->n);
+
 			if (temp->n > temp->next->n) 	/* Being the swapped */
 			{
-				second_elem = temp->next; /* Picked up the bad element */
 
-				/* Disconnecting before moving */
-				stitch_front = second_elem->next; /* -> */
-				stitch_back = second_elem->prev; /* <- */
-				second_elem->prev->next = stitch_front;
-				second_elem->next->prev = stitch_back;
+				/* If the node to be moved is not and the end */
+				if (temp->next->next != NULL)
+				{
+					second_elem = temp->next; /* Picked up the bad element */
+					/* Disconnecting before moving */
+					stitch_front = second_elem->next; /* -> */
+					stitch_back = second_elem->prev; /* <- */
+					second_elem->prev->next = stitch_front;
+					second_elem->next->prev = stitch_back;
+				}
 
 				while (second_elem->n > temp->n)
 				{
@@ -45,7 +51,7 @@ void insertion_sort_list(listint_t **list)
 					temp->prev = second_elem;
 				}
 
-				/* If the nodes becoming the head */
+				/* If the node's becoming the head */
 				else if (temp->prev == NULL)
 				{	
 					second_elem->prev = NULL;
