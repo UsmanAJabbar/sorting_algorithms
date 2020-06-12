@@ -1,51 +1,46 @@
 #include "sort.h"
-#include <stdio.h>
 
+/**
+ * insertion_sort_list - an insert sort
+ * implementation with doubly linked lists.
+ * @list: head to the doubly linked list
+ * Return: Always void
+ */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *second_elem, *temp, *stitch_front, *stitch_back;
+	listint_t *second_elem, *cur = *list, *stitch_front, *stitch_back;
 	int swap_tick = 1;
 
-	while (swap_tick == 1 && temp)
-		for (temp = *list, swap_tick = 0; temp; temp = temp->next)
+	while (swap_tick == 1 && cur)
+		for (cur = *list, swap_tick = 0; cur && cur->next; cur = cur->next)
 		{
-			if (temp->next == NULL)
-				break;
-			if (temp->n > temp->next->n) 	/* Being the swapped */
+			if (cur->n > cur->next->n) 	/* Being the swapped */
 			{
-				second_elem = temp->next; /* Picked up the bad element */
+				second_elem = cur->next; /* Picked up the bad element */
 
 				/* Disconnecting before moving */
 				stitch_front = second_elem->next; /* -> ||| */
 				stitch_back = second_elem->prev; /* ||| <- */
 				second_elem->prev->next = stitch_front;
-
-				if (second_elem->next != NULL)
+				if (second_elem->next)
 					second_elem->next->prev = stitch_back;
 
-				while (second_elem->n > temp->n)
-				{
-					if (temp->prev == NULL)
+				for (; second_elem->n > cur->n; cur = cur->prev)
+					if (!cur->prev)
 						break;
-					temp = temp->prev;	
-				}
 
-				/* If the node's being inserted in the middle of the list */
-				if (temp->prev != NULL)
+				/* NODE TO BE MOVED IN THE MIDDLE */
+				if (cur->prev)
 				{
-					temp->prev->next = second_elem;
-					second_elem->next = temp;
-					second_elem->prev = temp->prev;
-					temp->prev = second_elem;
+					cur->prev->next = second_elem, second_elem->next = cur;
+					second_elem->prev = cur->prev, cur->prev = second_elem;
 				}
 
-				/* If the node's becoming the head */
-				else if (temp->prev == NULL)
-				{	
-					second_elem->prev = NULL;
-					second_elem->next = temp;
-					temp->prev = second_elem;
-					*list = second_elem;
+				/* NODE TO BECOME THE HEAD */
+				else
+				{
+					second_elem->prev = NULL, second_elem->next = cur;
+					cur->prev = second_elem, *list = second_elem;
 				}
 				print_list(*list), swap_tick = 1;
 			}
