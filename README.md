@@ -1,4 +1,4 @@
-# C - Sorting algorithms & Big O
+# C - Sorting Algorithms & Big O
 This repo is a collaborative project by Usman Abdul Jabbar and Tim McMacken.
 
 ## Description
@@ -12,6 +12,7 @@ Some of the most common algorithms covered by this repository are:
 ## Requirements
 - Linux (Recommended)
 - gcc(>= 4.8.4)
+- Logic File, Header, Main Files
 
 ### Added Notes:
 - All logic code that requires checking by the Holberton checker must be located at the root of the repository.
@@ -23,6 +24,11 @@ Some of the most common algorithms covered by this repository are:
   - in the best case
   - in the average case
   - in the worst case
+- To test, move the main file associated with the logic file to the root of the repo folder and compile the code with the following code:
+```
+gcc -Wall -Wextra -Werror -pedantic #-main.c #-logic_file.c [ print_array.c || print_list.c ] -o output
+./output
+```
 
 ## Files
 Since standardized libraries are forbidden, all tasks must make use of either print_array.c or print_list.c. Tasks that make use of linked lists must use the following struct.
