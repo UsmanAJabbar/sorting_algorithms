@@ -19,9 +19,13 @@ Some of the most common algorithms covered by this repository are:
 - All logic code must adhere to the Betty C style format.
 - The use of standard library functions is strictly prohibited unless specified.
 - All prototypes and structs must be located in the 'sort.h' file and must be guarded.
+- All tasks given require an extra text file containing the big O notations of the time complexity of the Quick sort algorithm, with 1 notation per line:
+  - in the best case
+  - in the average case
+  - in the worst case
 
 ## Files
-There are a few files offered by the Holberton School. These files have to be used throughout the number of tasks given.
+Since standardized libraries are forbidden, all tasks must make use of either print_array.c or print_list.c. Tasks that make use of linked lists must use the following struct.
 #### print_array.c
 ```
 #include <stdlib.h>
