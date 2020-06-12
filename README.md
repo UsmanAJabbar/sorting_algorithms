@@ -1,50 +1,29 @@
-# 0x1B. C - Sorting algorithms & Big O
-#### Foundations - Low-level programming & Algorithm ― Data structures and Algorithms
-#### by Alexandre Gautier, Software Engineer at Holberton, Inc.
-#### Project to be done in teams of 2 people (your team: Timothy McMacken, Usman Abdul Jabbar
-#### Ongoing project - started 06-11-2020, must end by 06-18-2020
+# C - Sorting algorithms & Big O
+This repo is a collaborative project by Usman Abdul Jabbar and Tim McMacken.
 
-### Background Context
-This project is meant to be done by groups of two students. Each group of two should pair program for at least the mandatory part.
+## Description
+The purpose of this project is to learn about some of the most common algorithms as well as explore concepts of calculating the BigO notation.
+Some of the most common algorithms covered by this repository are:
+- Bubble sort
+- Insertion sort
+- Selection sort
+- Quick sort
 
-### Resources
-#### Read or watch:
-Sorting algorithm
-Big O notation
-Sorting algorithms animations
-15 sorting algorithms in 6 minutes (WARNING: The following video can trigger seizure/epilepsy. It is not required for the project, as it is only a funny visualization of different sorting algorithms)
+## Requirements
+- Linux (Recommended)
+- gcc(>= 4.8.4)
 
-### Learning Objectives
-At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+### Added Notes:
+- All logic code that requires checking by the Holberton checker must be located at the root of the repository.
+- All main files offered by the intranet are located in the main_files/ directory.
+- All logic code must adhere to the Betty C style format.
+- The use of standard library functions is strictly prohibited unless specified.
+- All prototypes and structs must be located in the 'sort.h' file and must be guarded.
 
-#### General
-At least four different sorting algorithms
-What is the Big O notation, and how to evaluate the time complexity of an algorithm
-How to select the best sorting algorithm for a given input
-What is a stable sorting algorithm
-
-### Requirements
-#### General
-Allowed editors: vi, vim, emacs
-All your files will be compiled on Ubuntu 14.04 LTS
-Your programs and functions will be compiled with gcc 4.8.4 using the flags -Wall -Werror -Wextra and -pedantic
-All your files should end with a new line
-A README.md file, at the root of the folder of the project, is mandatory
-Your code should use the Betty style. It will be checked using betty-style.pl and betty-doc.pl
-You are not allowed to use global variables
-No more than 5 functions per file
-Unless specified otherwise, you are not allowed to use the standard library. Any use of functions like printf, puts, … is totally forbidden.
-In the following examples, the main.c files are shown as examples. You can use them to test your functions, but you don’t have to push them to your repo (if you do we won’t take them into account). We will use our own main.c files at compilation. Our main.c files might be different from the one shown in the examples
-The prototypes of all your functions should be included in your header file called sort.h
-Don’t forget to push your header file
-All your header files should be include guarded
-A list/array does not need to be sorted if its size is less than 2.
-Github
-There should be one project repository per group. If you clone/fork/whatever a project repository with the same name before the second deadline, you risk a 0% score.
-
-More Info
-Data Structure and Functions
-For this project you are given the following print_array, and print_list functions:
+## Files
+There are a few files offered by the Holberton School. These files have to be used throughout the number of tasks given.
+#### print_array.c
+```
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -68,6 +47,10 @@ void print_array(const int *array, size_t size)
     }
     printf("\n");
 }
+```
+
+#### print_list.c
+```
 #include <stdio.h>
 #include "sort.h"
 
@@ -91,9 +74,10 @@ void print_list(const listint_t *list)
     }
     printf("\n");
 }
-Our files print_array.c and print_list.c (containing the print_array and print_list functions) will be compiled with your functions during the correction.
-Please declare the prototype of the functions print_array and print_list in your sort.h header file
-Please use the following data structure for doubly linked list:
+```
+
+#### listint_s struct -> sort.h
+```
 /**
  * struct listint_s - Doubly linked list node
  *
@@ -107,17 +91,4 @@ typedef struct listint_s
     struct listint_s *prev;
     struct listint_s *next;
 } listint_t;
-Please, note this format is used for Quiz and Task questions.
-
-O(1)
-O(n)
-O(n!)
-n square -> O(n^2)
-log(n) -> O(log(n))
-n * log(n) -> O(nlog(n))
-n + k -> O(n+k)
-…
-Please use the “short” notation (don’t use constants). Example: O(nk) or O(wn) should be written O(n). If an answer is required within a file, all your answers files must have a newline at the end.
-
-Tests
-Here is a quick tip to help you test your sorting algorithms with big sets of random integers: Random.org
+```
