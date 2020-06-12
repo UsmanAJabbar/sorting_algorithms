@@ -45,19 +45,17 @@ temp->n is < sort->n in the above function*/
 	{
 		sorted->prev->next = temp;
 		temp->prev = sorted->prev;
-	}
-	sorted->prev = temp;
-	print_list(*list); 
-
-        if (temp->prev != NULL)
-	{
+		sorted->prev = temp;
+		print_list(*list);
 		check_sorted = temp->prev;
 		if (check_sorted->n > temp->n)
 			swapper(list, check_sorted);
 	}
 	else
 	{
-		(void) check_sorted;
+		temp->prev = NULL;
+		sorted->prev = temp;
 		(*list) = temp;
+		print_list(*list);
 	}
 }
