@@ -6,34 +6,22 @@ void insertion_sort_list(listint_t **list)
 	listint_t *second_elem, *temp, *stitch_front, *stitch_back;
 	int swap_tick = 1;
 
-	/*
-	# We need to keep the address of what the second element->next was
-	# pointing and also keep a list of what the first element->prev
-	# was pointing at.
-
-	# Once that's done, then, second_elem->next = first_elem
-	# Tick the flag asserting that a swap has occured.
-	# Then print the current status of the array and restart the loop.
-	*/
-
 	while (swap_tick == 1 && temp)
 		for (temp = *list, swap_tick = 0; temp; temp = temp->next)
 		{
-			printf("Temp->n %d\n", temp->n);
-
+			if (temp->next == NULL)
+				break;
 			if (temp->n > temp->next->n) 	/* Being the swapped */
 			{
+				second_elem = temp->next; /* Picked up the bad element */
 
-				/* If the node to be moved is not and the end */
-				if (temp->next->next != NULL)
-				{
-					second_elem = temp->next; /* Picked up the bad element */
-					/* Disconnecting before moving */
-					stitch_front = second_elem->next; /* -> */
-					stitch_back = second_elem->prev; /* <- */
-					second_elem->prev->next = stitch_front;
+				/* Disconnecting before moving */
+				stitch_front = second_elem->next; /* -> ||| */
+				stitch_back = second_elem->prev; /* ||| <- */
+				second_elem->prev->next = stitch_front;
+
+				if (second_elem->next != NULL)
 					second_elem->next->prev = stitch_back;
-				}
 
 				while (second_elem->n > temp->n)
 				{
@@ -59,7 +47,6 @@ void insertion_sort_list(listint_t **list)
 					temp->prev = second_elem;
 					*list = second_elem;
 				}
-
 				print_list(*list), swap_tick = 1;
 			}
 			if (swap_tick == 1)
