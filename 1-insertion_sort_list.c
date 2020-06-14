@@ -11,6 +11,9 @@ void insertion_sort_list(listint_t **list)
 	listint_t *second_elem, *cur = *list, *stitch_front, *stitch_back;
 	int swap_tick = 1;
 
+	if (!cur || !cur->next)
+		return;
+
 	while (swap_tick == 1 && cur)
 		for (cur = *list, swap_tick = 0; cur && cur->next; cur = cur->next)
 		{
