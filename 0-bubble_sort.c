@@ -25,7 +25,7 @@ void bubble_sort(int *array, size_t size)
 			{
 				/* If the current index > next index, swap the elements */
 				temp = array[i + 1], array[i + 1] = array[i], array[i] = temp;
-				print_array(array, size), flag = 1; 	/* Print the updated array */
+				print_array(array, size), flag = 1;	/* Print the updated array */
 			}
 		}
 }
