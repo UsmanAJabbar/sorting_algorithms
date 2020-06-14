@@ -19,10 +19,12 @@ typedef struct listint_s
 
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
-
-/* Mandatory Task Definitions/Prototypes */
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
+void quick_sort(int *array, size_t size);
+int lomuto(int *array, size_t size, int start, size_t end);
+void sort(int *array, size_t size, int start, size_t end);
+void swap(int *position1, int *position2);
 
 #endif
