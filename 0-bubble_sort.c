@@ -8,6 +8,7 @@
  * state.
  * @array: array of integers to be sorted
  * @size: size of the array
+ * Return: Always void
  */
 void bubble_sort(int *array, size_t size)
 {
