@@ -13,7 +13,10 @@ void bubble_sort(int *array, size_t size)
 {
 	unsigned int i, temp, flag = 1;
 
-	while (flag == 1)
+	if (!array)
+		return;
+
+	while (flag == 1 && i != size)
 		for (i = 0, flag = 0; i < size - 1; i++)
 		{
 			/* Create a window comparing two ints */
@@ -23,8 +26,5 @@ void bubble_sort(int *array, size_t size)
 				temp = array[i + 1], array[i + 1] = array[i], array[i] = temp;
 				print_array(array, size), flag = 1; 	/* Print the updated array */
 			}
-			/* If a swap occured, then restart the process from the beginning */
-			if (flag == 1)
-				break;
 		}
 }
