@@ -13,17 +13,16 @@ void insertion_sort_list(listint_t **list)
 
 	if (!cur || !cur->next)
 		return;
-
 	while (swap_tick == 1 && cur)
 		for (cur = *list, swap_tick = 0; cur && cur->next; cur = cur->next)
 		{
-			if (cur->n > cur->next->n) 	/* Being the swapped */
+			if (cur->n > cur->next->n)		/* Being the swapped */
 			{
-				second_elem = cur->next; /* Picked up the bad element */
+				second_elem = cur->next;	/* Picked up the bad element */
 
 				/* Disconnecting before moving */
-				stitch_front = second_elem->next; /* -> ||| */
-				stitch_back = second_elem->prev; /* ||| <- */
+				stitch_front = second_elem->next;	/* -> ||| */
+				stitch_back = second_elem->prev;	/* ||| <- */
 				second_elem->prev->next = stitch_front;
 				if (second_elem->next)
 					second_elem->next->prev = stitch_back;
@@ -38,7 +37,6 @@ void insertion_sort_list(listint_t **list)
 					cur->prev->next = second_elem, second_elem->next = cur;
 					second_elem->prev = cur->prev, cur->prev = second_elem;
 				}
-
 				/* NODE TO BECOME THE HEAD */
 				else
 				{
