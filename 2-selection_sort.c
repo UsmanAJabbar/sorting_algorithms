@@ -9,12 +9,13 @@
  */
 void selection_sort(int *array, size_t size)
 {
-	unsigned int i, j, flag, minindex, temp; 
+	unsigned int i, j, flag, minindex, temp;
 	int minval;
 
+	if (!array)
+		return;
 	/* Keep a copy of where the min was found */
 	/* Switch out the current index with array[jindex] */
-
 	for (i = 0, flag = 0, minval = array[i]; i < size; i++, minval = array[i])
 	{
 		for (j = i + 1; array[j]; j++)
@@ -23,11 +24,11 @@ void selection_sort(int *array, size_t size)
 
 		if (flag == 1)
 		{
-			temp = array[i]; /* Temp store val in array[i] */
-			array[i] = minval; 	/* Replace array[i] with the minval found */
-			array[minindex] = temp; /* Replace old array[i] with the index where el found */
-			print_array(array, size); /* Print the current status of the array */
-			flag = 0; /* Reset the flag for the next loop */
+			temp = array[i];
+			array[i] = minval;
+			array[minindex] = temp;
+			print_array(array, size);
+			flag = 0;
 		}
 	}
 }
