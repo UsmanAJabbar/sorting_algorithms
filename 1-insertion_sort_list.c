@@ -13,7 +13,7 @@ void insertion_sort_list(listint_t **list)
 
 	if (!cur || !cur->next)
 		return;
-	while (swap_tick == 1)
+	while (swap_tick == 1 && cur)
 		for (cur = *list, swap_tick = 0; cur && cur->next; cur = cur->next)
 		{
 			if (cur->n > cur->next->n)		/* Being the swapped */
@@ -45,5 +45,7 @@ void insertion_sort_list(listint_t **list)
 				}
 				print_list(*list), swap_tick = 1;
 			}
+			if (swap_tick == 1)
+				break;
 		}
 }
