@@ -15,7 +15,7 @@ void quick_sort(int *array, size_t size)
 	if (array == NULL || size <= 1)
 		return;
 
-	for (i = 0; i < ((int)size -1); i++)
+	for (i = 0; i < ((int)size - 1); i++)
 	{
 		if (array[i] < array[i + 1])
 			ordered = 1;
@@ -27,12 +27,12 @@ void quick_sort(int *array, size_t size)
 	}
 	if (ordered == 1)
 		return;
-	else
+	if (ordered == 0)
 		sort(array, size, 0, (size - 1));
 }
 
 /**
- * Sort - a function used to recursively call out lomuto function
+ * sort - a function used to recursively call out lomuto function
  * @array: the array of integers
  * @size: the number of positions in array
  * @start: the starting point for the lomuto partition
@@ -46,7 +46,7 @@ void sort(int *array, size_t size, int start, size_t end)
 	if (start < (int)end)
 	{
 		pivot_position = lomuto(array, size, start, end);
-		sort(array, size, start, (pivot_position -1));
+		sort(array, size, start, (pivot_position - 1));
 		sort(array, size, (pivot_position + 1), end);
 	}
 }
@@ -59,11 +59,12 @@ void sort(int *array, size_t size, int start, size_t end)
  * @size: the number of positions in array
  * @start: the starting point for the lomuto partition
  * @end: the end point for the lomuto partition
+ * Return: the pivot position.
  */
 
 int lomuto(int *array, size_t size, int start, size_t end)
 {
-/**
+/*
  * A lomuto partition will take the last element in the array to be
  * our pivot point, this seems to be an arbitrary pick.
  *
@@ -92,7 +93,7 @@ int lomuto(int *array, size_t size, int start, size_t end)
 				print_array(array, size);
 			}
 		}
-	swap(&array[i + 1], &array[end]); 
+	swap(&array[i + 1], &array[end]);
 	print_array(array, size);
 	return (i + 1);
 }
