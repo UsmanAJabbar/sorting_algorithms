@@ -93,8 +93,11 @@ int lomuto(int *array, size_t size, int start, size_t end)
 				print_array(array, size);
 			}
 		}
-	swap(&array[i + 1], &array[end]);
-	print_array(array, size);
+	if ((i + 1) != (int)end)
+	{
+		swap(&array[i + 1], &array[end]);
+		print_array(array, size);
+	}
 	return (i + 1);
 }
 
