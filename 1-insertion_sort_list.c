@@ -31,7 +31,6 @@ void insertion_sort_list(listint_t **list)
 				for (; second_elem->n > cur->n; cur = cur->prev)
 					if (!cur->prev)
 						break;
-
 				/* NODE TO BE MOVED IN THE MIDDLE */
 				if (cur->prev)
 				{
