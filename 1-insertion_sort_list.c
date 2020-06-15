@@ -8,11 +8,12 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *second_elem, *cur = *list, *stitch_front, *stitch_back;
+	listint_t *second_elem, *cur, *stitch_front, *stitch_back;
 	int swap_tick = 1;
 
-	if (!list || !(*list) || !cur || !cur->next)
+	if (list == NULL || (*list) == NULL || (*list)->next == NULL)
 		return;
+	cur = *list;
 	while (swap_tick == 1 && cur)
 		for (cur = *list, swap_tick = 0; cur && cur->next; cur = cur->next)
 		{
