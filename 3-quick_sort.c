@@ -17,7 +17,7 @@ void quick_sort(int *array, size_t size)
 
 	for (i = 0; i < ((int)size - 1); i++)
 	{
-		if (array[i] < array[i + 1])
+		if (array[i] <= array[i + 1])
 			ordered = 1;
 		else
 		{
