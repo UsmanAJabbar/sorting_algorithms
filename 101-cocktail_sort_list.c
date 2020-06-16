@@ -17,57 +17,56 @@ void cocktail_sort_list(listint_t **list)
 	int start = 0, end = 0, moving = 0, sort = 1, min, max;
 
 	if (!list || !(*list) || !(*list)->next)
-		return;
-	mover = *list;
-	max = mover->n;
+		return; /*This to check we have a valid list*/
+	mover = *list; /*Set mover to head*/
 	while (mover->next != NULL)
 	{
-		if (max > mover->n)
-			sort = 0;
 		mover = mover->next;
 		end++;
+		if (mover->prev->n > mover->n)
+			sort = 0; /*This is to check our list is un-ordered*/
 	}
 	if (sort == 1)
-		return;
-	mover = (*list);
+		return;/*If list is sorted, we done!*/
+	mover = (*list);/*Reset mover to head*/
 	while (start < end)
 	{
-		max = mover->n;
-		while (moving < end)
+		max = mover->n;/*Max is the first int for now*/
+		while (moving < end)/*end is an int acting as a limit*/
 		{
 			mover = mover->next;
 			if (mover->n > max)
 			{
-				max = mover->n;
-				bubble_up = mover;
+				max = mover->n; /*If currect n is > max, reassign*/
+				bubble_up = mover;/*New biggest node is now bubble up*/
 			}
 			else
-			{
+			{ /* If bubble up is bigger that current now, swap*/
 				swap_node(list, bubble_up, mover);
 				mover = bubble_up;
 				print_list(*list);
 			}
-			moving++;
+			moving++; /*Counter increases*/
 		}
-		end--;
-		min = mover->n;
-		while (moving > start)
+		end--;/*If we get to here we will have bubble up the biggest*/
+		min = mover->n; /*Set the min value to current node*/
+		while (moving > start) /*Working back towards start*/
 		{
 			mover = mover->prev;
 			if (mover->n < min)
-			{
-				min = mover->n;
-				bubble_down = mover;
+			{/*If the current node->n is less than*/
+				min = mover->n; /*reassign minimum*/
+				bubble_down = mover;/*current now is now bubble down*/
 			}
 			else
-			{
+			{/*If bubble down node is less than current swap*/
 				swap_node(list, mover, bubble_down);
 				print_list(*list);
 				mover = bubble_down;
 			}
-			moving--;
+			moving--;/*Decrement each round for movement*/
 		}
-		start++;
+		start++;/*We should have bubble down this rounds min so shring window*/
 	}
 }
 
