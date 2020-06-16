@@ -29,5 +29,10 @@ void quick_sort(int *array, size_t size);
 void sort(int *array, int start, int end, size_t arraylen);
 size_t lomuto(int *array, int low, int high, size_t arraylen);
 void swap(int *left, int *right);
+int verify(listint_t **list);
+listint_t *swap_list(listint_t **head, listint_t *first, listint_t *second);
+
+/* Advanced Task Definitions */
+void cocktail_sort_list(listint_t **list);
 
 #endif
