@@ -14,14 +14,21 @@ void swap_node(listint_t **list, listint_t *node1, listint_t *node2);
 void cocktail_sort_list(listint_t **list)
 {
 	listint_t *mover, *bubble_up, *bubble_down;
-	int start = 0, end = 0, moving = 0, min, max;
+	int start = 0, end = 0, moving = 0, sort = 1, min, max;
 
+	if (list == NULL || (*list) == NULL)
+		return;
 	mover = *list;
+	max = mover->n;
 	while (mover->next != NULL)
 	{
+		if (max != mover->n)
+			sort = 0;
 		mover = mover->next;
 		end++;
 	}
+	if (sort == 1)
+		return;
 	mover = (*list);
 	while (start < end)
 	{
