@@ -3,35 +3,32 @@
 
 void swap_node(listint_t **list, listint_t *node1, listint_t *node2);
 /**
- *
- *
- *
+ * cocktail_sort_list - a function to sort a linked list with a back and
+ * forth max - min algorithmic approach. Max values will be bubbled up
+ * with their node swapping to the correct place in the list while min
+ * values will be bubbled down to their place.
+ * @list: a doubly linked list with integer values as node->n
+ * Return: Always void, it's pointers!
  */
-
 
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *start_position, *end_position, *mover, *bubble_up, *bubble_down;
-	int start = 0, end = 0, moving = 0, min, max, limiter = 0;
+	listint_t *mover, *bubble_up, *bubble_down;
+	int start = 0, end = 0, moving = 0, min, max;
 
 	mover = *list;
-	start_position = *list;
 	while (mover->next != NULL)
 	{
 		mover = mover->next;
 		end++;
 	}
-	printf("Start: %d End: %d\n", start, end);
-	end_position = mover;
-	while (start < (end - limiter))
+	mover = (*list);
+	while (start < end)
 	{
-		mover = start_position;
-		max = start_position->n;
+		max = mover->n;
 		while (moving < end)
 		{
-			printf("Mover is bubling up! Max=%d\n", max);
 			mover = mover->next;
-			printf("Mover is now on: %d\n", mover->n);
 			if (mover->n > max)
 			{
 				max = mover->n;
@@ -45,14 +42,11 @@ void cocktail_sort_list(listint_t **list)
 			}
 			moving++;
 		}
-		end_position = end_position->prev;
 		end--;
-		min = end_position->n;
-		while (moving > (start + limiter))
+		min = mover->n;
+		while (moving > start)
 		{
-			printf("Mover is bubbling down! Min=%d\n", min);
 			mover = mover->prev;
-			printf("Mover is now on: %d\n", mover->n);
 			if (mover->n < min)
 			{
 				min = mover->n;
@@ -66,16 +60,20 @@ void cocktail_sort_list(listint_t **list)
 			}
 			moving--;
 		}
-		start_position = start_position->next;
 		start++;
-		limiter++;
 	}
 }
 
+/**
+ * swap_node - a fucntion to swap two nodes in a doubly linked list
+ * @list: a doubly linked list
+ * @node1: the first node
+ * @node2: the second node to be swapped
+ * Return: void, no return
+ */
+
 void swap_node(listint_t **list, listint_t *node1, listint_t *node2)
 {
-/*	listint_t *swapper = node1; */
-
 	if (node1->prev != NULL)
 		node1->prev->next = node2;
 	else
