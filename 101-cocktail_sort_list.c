@@ -16,7 +16,7 @@ void cocktail_sort_list(listint_t **list)
 	listint_t *mover, *bubble_up, *bubble_down;
 	int start = 0, end = 0, moving = 0, sort = 1, min, max;
 
-	if (list == NULL || (*list) == NULL)
+	if (!list || !(*list) || !(*list)->next)
 		return;
 	mover = *list;
 	max = mover->n;
