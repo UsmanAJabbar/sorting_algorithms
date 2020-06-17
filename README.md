@@ -1,3 +1,5 @@
+![alt text](https://www.geeksultd.com/wp-content/uploads/2020/06/Logo.png)
+
 # C - Sorting Algorithms & Big O
 This repo is a collaborative project by Usman Abdul Jabbar and Tim McMacken.
 
@@ -102,3 +104,4 @@ typedef struct listint_s
     struct listint_s *next;
 } listint_t;
 ```
+
