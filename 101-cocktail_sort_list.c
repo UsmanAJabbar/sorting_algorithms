@@ -15,31 +15,28 @@ void cocktail_sort_list(listint_t **list)
 	if (!list || !(*list) || !(*list)->next)
 		return;
 
-	temp = *list;
-	check = verify(&(*list));	/* Check of the array is sorted before entering */
+	temp = *list;					/* Initialize temp initially */
 
-	while (check == 1)		/* Keep running until the verify func doesn't approve */
+	while ((check = verify(list)) == 1)		/* Keep running until the verify func doesn't approve */
 	{
 		/* Forward Check */
 		for (; temp->next; temp = temp->next)
 			if (temp->n > temp->next->n)
 			{
-				*list = swap_list(&(*list), temp, temp->next);
+				*list = swap_list((list), temp, temp->next);
 				temp = temp->prev, print_list(*list);
 			}
 
-		check = verify(&(*list));	/* Check if the list has been sorted */
+		check = verify(list);	/* Check if the list has been sorted */
 
 		/* Reverse Check */
-		if (check == 1 && temp->prev)
+		if (check == 1)
 			for (; temp->prev; temp = temp->prev)
 				if (temp->n < temp->prev->n)
 				{
-					*list = swap_list(&(*list), temp, temp->prev);
+					*list = swap_list((list), temp, temp->prev);
 					temp = temp->next, print_list(*list);
 				}
-
-		check = verify(&(*list));
 	}
 }
 
@@ -62,7 +59,6 @@ listint_t *swap_list(listint_t **head, listint_t *first, listint_t *second)
 	{
 		/* SWAPPING THE NEXTS */
 		temp = first->next, first->next = second->next, second->next = temp;
-
 		if (first->next)
 			first->next->prev = first;
 		if (second->next)
@@ -70,7 +66,6 @@ listint_t *swap_list(listint_t **head, listint_t *first, listint_t *second)
 
 		/* SWAPPING THE PREVS */
 		temp = first->prev, first->prev = second->prev, second->prev = temp;
-
 		if (first->prev)
 			first->prev->next = first;
 		if (second->prev)
@@ -102,7 +97,7 @@ int verify(listint_t **list)
 		for (temp = *list; temp->next != NULL; temp = temp->next)
 			if (temp->n > temp->next->n)
 				return (1);	/* Failed - List isn't sorted */
-		return (0);	/* Aye Aye Captain! All good */
+		return (0);			/* Aye Aye Captain! All good */
 	}
 	else
 		return (1); /* Failed because we don't have two nodes */
