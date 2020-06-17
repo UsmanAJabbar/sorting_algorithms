@@ -1,55 +1,46 @@
 #include "sort.h"
-#include <stdio.h>
 
 int check_ordered(int *array, size_t size);
-/**
- *
- *
- */
 
+/**
+ * shell_sort - a function to sort through an unsorted array
+ * and order the array using the knuth sequence and shell sort.
+ * @array: an array of ints
+ * @size: the size of the array
+ * Return: Void, no return
+ */
 
 void shell_sort(int *array, size_t size)
 {
-	size_t i, j, knuth = 1, done = 0;
+	size_t i, j, knuth = 1;
 	int temp;
-	
-	if (array == NULL || size <= 1)
+
+	if (!array || size <= 1 || (check_ordered(array, size) == 1))
 		return;
-	done = check_ordered(array, size);
-	if (done == 1)
-		return;
-	while (1)
-		if (((knuth * 3) + 1) < size)
-			knuth = (knuth * 3) + 1;
-		else
-			break;
-	while (knuth > 1)
+	while (((knuth * 3) + 1) < size)
+		knuth = (knuth * 3) + 1;
+	while (check_ordered(array, size) == 0)
 	{
-		printf("In the while loop, knuth=%ld\n", knuth);
-		for (i = 0; i < j; i++)
-		{
-			printf("In the for loop\n");
-			j = i + knuth;
-			if (j < size)
+		for (i = 0, j = i + knuth; i < j && j != size; i++, j++)
+			if (array[i] > array[j])
 			{
-				printf("array[%ld] = %d and array[%ld] = %d\n", i, array[i], j, array[j]);
-				if (array[i] > array[j])
-				{
-					printf("Swap o'clock\n");
-					printf("i was %d and j was %d\n", array[i], array[j]);
-					temp = array[i];
-					array[i] = array[j];
-					array[i] = temp;
-					printf("i now is %d and j now is %d\n", array[i], array[j]);
-					print_array(array, size);
-				}
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+				print_array(array, size);
 			}
-			else
-				break;
-		}
-		knuth = (knuth / 2);
+
+		if (knuth > 1)
+			knuth = (knuth / 3);
 	}
 }
+
+/**
+ * check_ordered - a function to check is an array is ordered
+ * @array: an array of intergers
+ * @size: the size of the array
+ * Return: Void, no return
+ */
 
 int check_ordered(int *array, size_t size)
 {
@@ -57,7 +48,7 @@ int check_ordered(int *array, size_t size)
 
 	for (i = 0; i < (size - 1); i++)
 	{
-		if (array[i] < array[i+1])
+		if (array[i] <= array[i + 1])
 			ordered = 1;
 		else
 			return (0);
