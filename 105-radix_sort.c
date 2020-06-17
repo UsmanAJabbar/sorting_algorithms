@@ -16,24 +16,25 @@ void radix_sort(int *array, size_t size)
 
 	while (sorted(array, size) != 0)
 	{
+		/* Generate when digits to sort */
 		for (i = 0; i < int_size; i++)
 			new_array[i] = array[i] % exponent;
 
+		/* Sort the digitized array */
 		selection_sort(new_array, size);
 
+		/* Put call on the numbers with those % values and put them */
+		/* back into their arranged indexes accordingly. */
 		for (i = 0, j = 0; i < int_size; i++)
 			if ((array[i] % exponent) == (new_array[j]))
-			{
-				if (j == 0)
+				if ((j == 0) || (array[i] != new_array[j - 1]))
 					new_array[j] = array[i], i = -1, j++;
 
-				else if (array[i] != new_array[j - 1])
-					new_array[j] = array[i], i = -1, j++;
-			}
-
+		/* Copy all of the contents from the new array into array */
 		for (i = 0; i < int_size; i++)
 			array[i] = new_array[i];
 
+		/* Print the current status of the array and up the exponent */
 		print_array(array, size), exponent *= 10;
 	}
 	free(new_array);
