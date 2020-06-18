@@ -18,7 +18,7 @@ void radix_sort(int *array, size_t size)
 	{
 		/* Generate when digits to sort */
 		for (i = 0; i < int_size; i++)
-			new_array[i] = array[i] % exponent;
+			new_array[i] = (array[i] % exponent);
 
 		/* Sort the digitized array */
 		selection_sort(new_array, size);
